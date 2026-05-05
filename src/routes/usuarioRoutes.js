@@ -12,7 +12,7 @@ router.post('/', usuarioController.crearUsuario);
 
 // GET /usuarios - Obtener todos los usuarios
 // TODO: Descomenta cuando implementes esta función
-// router.get('/', usuarioController.obtenerTodosLosUsuarios);
+router.get('/', usuarioController.obtenerTodosLosUsuarios);
 
 // GET /usuarios/:id - Obtener un usuario específico
 // TODO: Descomenta cuando implementes esta función

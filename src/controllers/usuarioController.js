@@ -48,9 +48,13 @@ const crearUsuario = (req, res) => {
  */
 const obtenerTodosLosUsuarios = (req, res) => {
   try {
-    // Ayudita: 
-    // 1. Llama a usuarioService.obtenerTodosLosUsuarios()
-    // 2. Responde con sendSuccess(res, usuarios, 'Usuarios obtenidos')
+    const usuarios = usuarioService.obtenerTodosLosUsuarios();
+    return sendSuccess(
+      res,
+      usuarios,
+      'lista de usuarios mostrada exitosamente',
+      200
+    );
     
   } catch (error) {
     return sendError(res, 'Error al obtener usuarios', 500);
