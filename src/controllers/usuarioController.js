@@ -69,12 +69,30 @@ const obtenerTodosLosUsuarios = (req, res) => {
  */
 const obtenerUsuarioPorId = (req, res) => {
   try {
-    // Ayudita:
-    // 1. Obtén el ID de req.params.id
-    // 2. Llama a usuarioService.obtenerUsuarioPorId(id)
-    // 3. Si el usuario NO existe, responde con sendError(res, 'Usuario no encontrado', 404)
-    // 4. Si el usuario EXISTE, responde con sendSuccess(res, usuario, 'Usuario encontrado')
-    
+    const {error, value} = obtenerUsuarioPorIdSchema.validate(req.params.id);
+    if(error){
+      return sendError(
+        res,
+        'Error en validación de parametro',
+        400,
+        error.details.map(err => err.message)
+      );
+    }
+    const usuarioEncontrado = usuarioService.obtenerUsuarioPorId(req.params.id);
+    if(usuarioEncontrado===null){
+      return sendError(
+        res,
+        'Usuario no encontrado',
+        404);
+    }else{
+      return sendSuccess(
+        res,
+        usuarioEncontrado,
+        'Usuario encontrado'
+      );
+    }
+
+
   } catch (error) {
     return sendError(res, 'Error al obtener usuario', 500);
   }
