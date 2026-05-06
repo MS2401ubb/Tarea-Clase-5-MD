@@ -49,7 +49,7 @@ Body:
 }
 ```
 
-### Obtener Usuarios (Por implementar)
+### Obtener Usuarios (IMPLEMENTADO)
 `GET /usuarios`
 
 ### Obtener Usuario por ID (Por implementar)

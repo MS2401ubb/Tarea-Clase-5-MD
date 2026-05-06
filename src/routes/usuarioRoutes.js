@@ -16,7 +16,7 @@ router.get('/', usuarioController.obtenerTodosLosUsuarios);
 
 // GET /usuarios/:id - Obtener un usuario específico
 // TODO: Descomenta cuando implementes esta función
-// router.get('/:id', usuarioController.obtenerUsuarioPorId);
+router.get('/:id', usuarioController.obtenerUsuarioPorId);
 
 // PATCH /usuarios/:id - Actualizar un usuario
 // TODO: Descomenta cuando implementes esta función

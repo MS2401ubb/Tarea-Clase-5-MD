@@ -5,7 +5,7 @@
 
 const { sendSuccess, sendError } = require('../handlers/responseHandler');
 const usuarioService = require('../services/usuarioService');
-const { createUsuarioSchema, updateUsuarioSchema } = require('../validations/usuarioValidation');
+const { createUsuarioSchema, updateUsuarioSchema, getUsuarioPorIdSchema} = require('../validations/usuarioValidation');
 
 /**
  * POST /usuarios

@@ -89,7 +89,7 @@ const updateUsuarioSchema = Joi.object({
 }).min(1); // Al menos debe enviarse un campo
 
 // Esquema para validar búsqueda por ID
-const obtenerUsuarioPorIdSchema = Joi.object({
+const getUsuarioPorIdSchema = Joi.object({
   id: Joi.number()
     .integer()
     .min(0)
@@ -105,5 +105,5 @@ const obtenerUsuarioPorIdSchema = Joi.object({
 module.exports = {
   createUsuarioSchema,
   updateUsuarioSchema,
-  getUsuarioByIdSchema
+  getUsuarioPorIdSchema
 };
