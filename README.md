@@ -52,7 +52,7 @@ Body:
 ### Obtener Usuarios (IMPLEMENTADO)
 `GET /usuarios`
 
-### Obtener Usuario por ID (Por implementar)
+### Obtener Usuario por ID (IMPLEMENTADO)
 `GET /usuarios/:id`
 
 ### Actualizar Usuario (Por implementar)
