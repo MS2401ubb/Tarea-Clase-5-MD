@@ -88,7 +88,22 @@ const updateUsuarioSchema = Joi.object({
     })
 }).min(1); // Al menos debe enviarse un campo
 
+// Esquema para validar búsqueda por ID
+const obtenerUsuarioPorIdSchema = Joi.object({
+  id: Joi.number()
+    .integer()
+    .min(0)
+    .required()
+    .messages({
+      'number.empty': 'El ID no puede estar vacío',
+      'any.required': 'El ID es requerido',
+      'number.base': 'El ID debe ser un número entero',
+      'number.min': 'El ID no puede ser negativo'
+    })
+});
+
 module.exports = {
   createUsuarioSchema,
-  updateUsuarioSchema
+  updateUsuarioSchema,
+  getUsuarioByIdSchema
 };
