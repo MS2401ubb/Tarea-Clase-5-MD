@@ -5,7 +5,7 @@
 
 const { sendSuccess, sendError } = require('../handlers/responseHandler');
 const usuarioService = require('../services/usuarioService');
-const { createUsuarioSchema, updateUsuarioSchema, getUsuarioPorIdSchema} = require('../validations/usuarioValidation');
+const { createUsuarioSchema, updateUsuarioSchema, getUsuarioPorIdSchema } = require('../validations/usuarioValidation');
 
 /**
  * POST /usuarios
@@ -69,7 +69,7 @@ const obtenerTodosLosUsuarios = (req, res) => {
  */
 const obtenerUsuarioPorId = (req, res) => {
   try {
-    const {error, value} = obtenerUsuarioPorIdSchema.validate(req.params.id);
+    const {error, value} = getUsuarioPorIdSchema.validate({id: parseInt(req.params.id)});
     if(error){
       return sendError(
         res,
@@ -78,8 +78,8 @@ const obtenerUsuarioPorId = (req, res) => {
         error.details.map(err => err.message)
       );
     }
-    const usuarioEncontrado = usuarioService.obtenerUsuarioPorId(req.params.id);
-    if(usuarioEncontrado===null){
+    const usuarioEncontrado = usuarioService.obtenerUsuarioPorId(value.id);
+    if(usuarioEncontrado==null){
       return sendError(
         res,
         'Usuario no encontrado',
