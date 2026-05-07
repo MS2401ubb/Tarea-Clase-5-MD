@@ -102,7 +102,7 @@ const obtenerUsuarioPorId = (req, res) => {
  */
 const actualizarUsuario = (req, res) => {
   try {
-    const { error: paramsError, value: valParam} = usuarioValidation.getUsuarioPorIdSchema.validate({id: parseInt(req.params.id)});
+    const { error: paramsError, value: valParam} = getUsuarioPorIdSchema.validate({id: parseInt(req.params.id)});
     if(paramsError){
       return sendError(
         res,
@@ -111,7 +111,6 @@ const actualizarUsuario = (req, res) => {
         paramsError.details.map(err => err.message)
       )
     }
-
     const { error: bodyError, value: valBody } = updateUsuarioSchema.validate(req.body);
     if(bodyError){
       return sendError(
@@ -122,6 +121,7 @@ const actualizarUsuario = (req, res) => {
       );
     }
     const usuarioActualizado = usuarioService.actualizarUsuario(valParam.id,valBody);
+    console.log(usuarioActualizado)
     if(usuarioActualizado == null){
       return sendError(
         res,
@@ -129,7 +129,8 @@ const actualizarUsuario = (req, res) => {
         404
       );
     }else{
-      return sendSuccess(res,
+      return sendSuccess(
+        res,
         usuarioActualizado,
         'Usuario actualizado'
       );
