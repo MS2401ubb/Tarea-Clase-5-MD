@@ -20,6 +20,6 @@ router.get('/:id', usuarioController.obtenerUsuarioPorId);
 
 // PATCH /usuarios/:id - Actualizar un usuario
 // TODO: Descomenta cuando implementes esta función
-// router.patch('/:id', usuarioController.actualizarUsuario);
+router.patch('/:id', usuarioController.actualizarUsuario);
 
 module.exports = router;

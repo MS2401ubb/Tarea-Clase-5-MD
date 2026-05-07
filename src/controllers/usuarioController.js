@@ -43,8 +43,6 @@ const crearUsuario = (req, res) => {
 /**
  * GET /usuarios
  * Obtiene todos los usuarios
- * 
- * TODO: Completa esta función
  */
 const obtenerTodosLosUsuarios = (req, res) => {
   try {
@@ -64,8 +62,6 @@ const obtenerTodosLosUsuarios = (req, res) => {
 /**
  * GET /usuarios/:id
  * Obtiene un usuario específico por ID
- * 
- * TODO: Completa esta función
  */
 const obtenerUsuarioPorId = (req, res) => {
   try {
@@ -106,13 +102,39 @@ const obtenerUsuarioPorId = (req, res) => {
  */
 const actualizarUsuario = (req, res) => {
   try {
-    // Ayudita:
-    // 1. Valida req.body con updateUsuarioSchema.validate()
-    // 2. Obtén el ID de req.params.id
-    // 3. Llama a usuarioService.actualizarUsuario(id, value)
-    // 4. Si el usuario NO existe, responde con sendError(res, 'Usuario no encontrado', 404)
-    // 5. Si el usuario EXISTE, responde con sendSuccess(res, usuarioActualizado, 'Usuario actualizado')
-    
+    const { error: paramsError, value: valParam} = usuarioValidation.getUsuarioPorIdSchema.validate({id: parseInt(req.params.id)});
+    if(paramsError){
+      return sendError(
+        res,
+        'Error en validación de parametros ID',
+        400,
+        paramsError.details.map(err => err.message)
+      )
+    }
+
+    const { error: bodyError, value: valBody } = updateUsuarioSchema.validate(req.body);
+    if(bodyError){
+      return sendError(
+        res,
+        'Error en validación de datos USUARIO a actualizar',
+        400,
+        bodyError.details.map(err => err.message)
+      );
+    }
+    const usuarioActualizado = usuarioService.actualizarUsuario(valParam.id,valBody);
+    if(usuarioActualizado == null){
+      return sendError(
+        res,
+        'Usuario no encontrado',
+        404
+      );
+    }else{
+      return sendSuccess(res,
+        usuarioActualizado,
+        'Usuario actualizado'
+      );
+    }
+
   } catch (error) {
     return sendError(res, 'Error al actualizar usuario', 500);
   }

@@ -37,7 +37,7 @@ app.listen(config.PORT, () => {
   console.log(`🔗 http://localhost:${config.PORT}`);
   console.log(`📚 Endpoints disponibles:`);
   console.log(`   POST   /usuarios       - Crear usuario (implementado)`);
-  console.log(`   GET    /usuarios       - Obtener todos (por completar)`);
-  console.log(`   GET    /usuarios/:id   - Obtener por ID (por completar)`);
+  console.log(`   GET    /usuarios       - Obtener todos (Implementado)`);
+  console.log(`   GET    /usuarios/:id   - Obtener por ID (Implementado)`);
   console.log(`   PATCH  /usuarios/:id   - Actualizar (por completar)`);
 });
